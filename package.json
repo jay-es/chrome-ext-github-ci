@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/jay-es/chrome-ext-github-ci/issues"
   },
-  "homepage": "https://github.com/jay-es/chrome-ext-github-ci#readme"
+  "homepage": "https://github.com/jay-es/chrome-ext-github-ci#readme",
+  "devDependencies": {
+    "@types/chrome": "0.0.154"
+  }
 }

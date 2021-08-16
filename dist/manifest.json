@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "chrome-ext-github-ci",
+  "version": "0.0.1",
+  "description": "",
+
+  "content_scripts": [
+    {
+      "matches": ["https://github.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["audio.mp3"],
+      "matches": ["https://github.com/*"]
+    }
+  ]
+}
