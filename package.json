@@ -1,0 +1,20 @@
+{
+  "name": "chrome-ext-github-ci",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jay-es/chrome-ext-github-ci.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jay-es/chrome-ext-github-ci/issues"
+  },
+  "homepage": "https://github.com/jay-es/chrome-ext-github-ci#readme"
+}
