@@ -10,6 +10,9 @@ let currentPath = "";
 /** @type {Status} */ let prevStatus = STATUS_OTHER;
 /** @type {Status} */ let currentStatus = STATUS_OTHER;
 
+const audio = new Audio(chrome.runtime.getURL("audio.mp3"));
+audio.load();
+
 const setCurrent = () => {
   const TEXT_PASSED = "All checks have passed";
   const TEXT_GOING = "Some checks haven’t completed yet";
@@ -38,8 +41,6 @@ setInterval(() => {
     prevStatus === STATUS_GOING &&
     currentStatus === STATUS_PASSED
   ) {
-    const url = chrome.runtime.getURL("audio.mp3");
-    const audio = new Audio(url);
     audio.play();
   }
 
