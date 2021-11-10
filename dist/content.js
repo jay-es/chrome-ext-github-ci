@@ -6,37 +6,33 @@ const STATUS_DONE = "DONE";
 const STATUS_GOING = "GOING";
 
 let prevPath = "";
-let currentPath = "";
 /** @type {Status} */ let prevStatus = STATUS_OTHER;
-/** @type {Status} */ let currentStatus = STATUS_OTHER;
 
 const audio = new Audio(chrome.runtime.getURL("audio.mp3"));
 audio.load();
 
-const setCurrent = () => {
+/** @returns {Status} */
+const getCurrentStatus = () => {
   const TEXT_PASSED = "All checks have passed";
   const TEXT_FAILED1 = "All checks have failed";
   const TEXT_FAILED2 = "Some checks were not successful";
   const TEXT_GOING = "Some checks haven’t completed yet";
 
-  currentPath = document.location.pathname;
-  currentStatus = STATUS_OTHER;
-
-  document.querySelectorAll(".status-heading").forEach((el) => {
+  for (const el of document.querySelectorAll(".status-heading")) {
     const text = el.textContent;
     if (text === TEXT_GOING) {
-      currentStatus = STATUS_GOING;
+      return STATUS_GOING;
     } else if ([TEXT_PASSED, TEXT_FAILED1, TEXT_FAILED2].includes(text)) {
-      currentStatus = STATUS_DONE;
+      return STATUS_DONE;
     }
-  });
+  }
+
+  return STATUS_OTHER;
 };
 
-// init
-setCurrent();
-
-setInterval(() => {
-  setCurrent();
+const exec = () => {
+  const currentPath = document.location.pathname;
+  const currentStatus = getCurrentStatus();
 
   if (
     prevPath === currentPath &&
@@ -48,4 +44,7 @@ setInterval(() => {
 
   prevPath = currentPath;
   prevStatus = currentStatus;
-}, 5000);
+};
+
+exec();
+setInterval(exec, 5000);
