@@ -16,20 +16,12 @@ ngSound.load();
 
 /** @returns {Status} */
 const getCurrentStatus = () => {
-  const TEXT_PASSED = "All checks have passed";
-  const TEXT_FAILED1 = "All checks have failed";
-  const TEXT_FAILED2 = "Some checks were not successful";
-  const TEXT_GOING = "Some checks haven’t completed yet";
-
   for (const el of document.querySelectorAll(".status-heading")) {
     const text = el.textContent;
-    if (text === TEXT_GOING) {
-      return STATUS_GOING;
-    } else if (text === TEXT_PASSED) {
-      return STATUS_PASSED;
-    } else if ([TEXT_FAILED1, TEXT_FAILED2].includes(text)) {
-      return STATUS_FAILED;
-    }
+    if (text === "All checks have passed") return STATUS_PASSED;
+    if (text === "All checks have failed") return STATUS_FAILED;
+    if (text === "Some checks were not successful") return STATUS_FAILED;
+    if (text === "Some checks haven’t completed yet") return STATUS_GOING;
   }
 
   return STATUS_OTHER;
