@@ -9,11 +9,6 @@ const STATUS_FAILED = "FAILED";
 let prevPath = "";
 /** @type {Status} */ let prevStatus = STATUS_OTHER;
 
-const okSound = new Audio(chrome.runtime.getURL("ok.mp3"));
-const ngSound = new Audio(chrome.runtime.getURL("ng.mp3"));
-okSound.load();
-ngSound.load();
-
 /** @returns {Status} */
 const getCurrentStatus = () => {
   for (const el of document.querySelectorAll(".status-heading")) {
@@ -27,15 +22,19 @@ const getCurrentStatus = () => {
   return STATUS_OTHER;
 };
 
+/** @param {string} filename */
+const playSound = (filename) =>
+  new Audio(chrome.runtime.getURL(filename)).play();
+
 const exec = () => {
   const currentPath = document.location.pathname;
   const currentStatus = getCurrentStatus();
 
   if (prevPath === currentPath && prevStatus === STATUS_GOING) {
     if (currentStatus === STATUS_PASSED) {
-      okSound.play();
+      playSound("ok.mp3");
     } else if (currentStatus === STATUS_FAILED) {
-      ngSound.play();
+      playSound("ng.mp3");
     }
   }
 
