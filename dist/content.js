@@ -11,12 +11,14 @@ let prevPath = "";
 
 /** @returns {Status} */
 const getCurrentStatus = () => {
-  for (const el of document.querySelectorAll(".status-heading")) {
+  const selectors = ".merge-pr .status-heading, .merge-pr [class*=Heading]";
+  for (const el of document.querySelectorAll(selectors)) {
     const text = el.textContent;
     if (text === "All checks have passed") return STATUS_PASSED;
     if (text === "All checks have failed") return STATUS_FAILED;
     if (text === "Some checks were not successful") return STATUS_FAILED;
-    if (text === "Some checks haven’t completed yet") return STATUS_GOING;
+    if (text === "Some checks haven’t completed yet") return STATUS_GOING; // .status-heading
+    if (text === "Some checks haven't completed yet") return STATUS_GOING; // .prc-Heading-Heading-*
   }
 
   return STATUS_OTHER;
