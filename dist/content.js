@@ -11,8 +11,7 @@ let prevPath = "";
 
 /** @returns {Status} */
 const getCurrentStatus = () => {
-  const selectors = ".merge-pr .status-heading, .merge-pr [class*=Heading]";
-  for (const el of document.querySelectorAll(selectors)) {
+  for (const el of document.querySelectorAll("[aria-label=Checks] h3")) {
     const text = el.textContent;
     if (text === "All checks have passed") return STATUS_PASSED;
     if (text === "All checks have failed") return STATUS_FAILED;
